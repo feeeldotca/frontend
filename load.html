@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Canadian Residential Electrical Service Size Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Online calculator for residential electrical service size. Uses Canadian electrical code." />
+  <link rel="stylesheet" href="style/res_load.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="style/res_load_print.css" type="text/css" media="print" />
+  <link  href="//fonts.googleapis.com/css?family=PT+Sans+Caption:regular,bold" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+<div id="example-6">
+	<select v-model="selected" multiple style="width: 50px;">
+	  <option>A</option>
+	  <option>B</option>
+	  <option>C</option>
+	</select>
+	<br>	
+</div>
+<div id="app1">
+	<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+	<label for="jack">Jack</label>
+	<input type="checkbox" id="john" value="John" v-model="checkedNames">
+	<label for="john">John</label>
+	<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+	<label for="mike">Mike</label>
+	<br>
+	<span>Checked names: {{ checkedNames }}</span>
+	<span>Selected: {{ selected }}</span>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	new Vue({
+		el: "#app1",
+		data: {
+			checkedNames: []
+		}
+		data() {
+			return {
+				key: value
+			}
+		},	
+	})
+	
+</script>
+	new Vue({
+  el: '#example-6',
+  data: {
+	
+  }
+})
+
+</body>
+</html>
+

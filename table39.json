@@ -1,0 +1,17 @@
+{
+    "name":"table 39",
+    "description":"Overcurrent device rating, A",
+    "cols": 5,
+    "col1_title":"Ampacity of largest service conductor or equivalent for multiple conductors, A",
+    "col2_title":"Copper [See Note 2)], For calculated loads up to, A*",
+    "col3_title":"Copper [See Note 2)], Conductor size, AWG or kcmil",
+    "col4_title":"Aluminum [See Note 3)], For calculated loads up to, A*",
+    "col5_title":"Aluminum [See Note 3)], Conductor size, AWG or kcmil",
+    "ov_rating_amp":[60,100,125,200,225,400],
+    "copper_loads_amp":[60,89,121,184,210,352],
+    "copper_conductor_size":[6,4,2,"2/0","3/0",400],
+    "al_loads_amp":[53,95,125,189,215,357],
+    "al_conductor_size":[6,2,"0","0000","250","600"],
+    "notes":[["1) This Table applies only to conductors sized for loads calculated in accordance with Rules 8-200 1) a), 8-200 2), or 8-202 1)."],["2) If the calculated load exceeds the limit shown in this Table, the next larger size insulated conductor or cable shall be used."]],
+    "star_note":"* These ampacities are the ampacities given in Tables 2 and 4 for 75 °C, increased by 5%."
+}
