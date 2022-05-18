@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-1.12.2.min.js"></script>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>111</li>
+                <ol>
+                    <li>fff
+                        <p>hello</p>
+                    </li>
+                <li>rrr</li>
+                <li>dddd</li>
+                <li>sss</li>
+                <li>aaa</li>
+                
+                
+                
+                </ol>
+
+
+            <li>222333</li>
+            <li>333</li>
+            <li>4p  <p>world</p> 44</li>
+            <li>555</li>
+
+            <li>666></li>
+        </ul>
+    </div>
+    <script>
+        $(function(){
+        $('ul>li:odd').css('background-color', 'green').css('width','100px');
+        $('ul>li:even').css('background',"yellow").css('width','50%').css("height","40px");
+        $('ul li:first').css('color','red');
+        $('ul li:last').css('background-img','./kenzhang.png');
+    }
+        )
+    </script>
+</body>
+</html>

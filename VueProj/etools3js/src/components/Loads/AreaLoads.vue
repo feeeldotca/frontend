@@ -19,7 +19,7 @@ const houseAreaLoads = computed( () => (calcArea.value <=0) ? 0 :((calcArea.valu
 
 //update total load value in store if any changes made on house area calculations
 watch(()=>houseAreaLoads.value, 
-(v, oldV)=>{
+v=>{
   //console.log(`new is ${v}, old is ${oldV}`)
   store.commit('updateLoads',v)
 })

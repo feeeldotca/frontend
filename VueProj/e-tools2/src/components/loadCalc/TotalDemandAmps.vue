@@ -1,162 +1,165 @@
 <template>
-  <div class="result">
-    <div class="mx10">
-      <div class="col-md-8 col-8 text-center">
+  <v-card class="lighten-2 mt-3 mx-auto" color="green lighten-4" hover>
+    <v-row class="mx10">
+      <div class="col-md-8 col-8 text-right">
         <strong>Total Demand Watts &#187;</strong>
       </div>
-      <div class="mt-3 text-center text-warning">{{ totalDemandWatts }} W</div>
-    </div>
+      <div class="mt-3 text-right text-warning">{{ totalDemandWatts }} W</div>
+    </v-row>
 
-    <div class="mx10">
-      <div class="col-md-8 col-8 text-center">
+    <v-row class="mx10">
+      <div class="col-md-8 col-8 text-right">
         <strong>Total Demand Amps &#187;</strong>
       </div>
-      <div class="mt-3 text-center text-warning" id="ampResults">{{ totalDemandWatts == 0 ? '' : totalDemandAmps + ' A' }}
-      </div>
-    </div>
+      <div class="mt-3 text-right text-warning" id="ampResults">{{ totalDemandWatts==0 ? '' : totalDemandAmps + ' A'}} </div>
+    </v-row>
 
-    <div v-if="totalDemandAmps <= 200">
-
-      <div class="mx10">
-        <div class="col-md-8 col-8 text-center">
+    <div v-if="(houseDemands/240) <= 200">
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
           <strong>Minimum Service Amps:</strong>
         </div>
         <div class="col-md-4 col-4 text-left">
-          <div id="sampReq" class="text-primary">{{ totalDemandWatts == 0 ? '' : totalDemandAmps + ' A' }} </div>
+          <div id="sampReq" class="text-primary">{{ totalDemandWatts==0 ? '' : totalDemandAmps + ' A' }} </div>
         </div>
-      </div>
+      </v-row>
 
-      <div class="mx10">
-        <div class="col-md-8 col-8 text-center">
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
           <strong class="text-light">
             Hot Conductor Size</strong>
-
-
+            
+          
         </div>
         <div class="col-md-4 col-4 text-left">
           <div id="hotReq" class="text-warning">
-            Cu: {{ conductorSize('table2', temp) }}
+            Cu: {{ conductorSize('table2',temp) }}
             <br />
-            Al: {{ conductorSize('table4', temp) }}
+            Al: {{ conductorSize('table4',temp) }}
           </div>
         </div>
         <div id="radio" class="col-md-12 col-12 text-left flex-center">
-          <v-radio-group v-model="temp" row dense>
-            <v-radio label="60" value="60c"></v-radio>
-            <v-radio label="75" value="75c"></v-radio>
-            <v-radio label="90°C" value="90c"></v-radio>
-          </v-radio-group>
-        </div>
-      </div>
+              <v-radio-group v-model="temp" row dense>
+                <v-radio label="60" value="60c" ></v-radio>
+                <v-radio label="75" value="75c" ></v-radio>
+                <v-radio label="90°C" value="90c"></v-radio>
+              </v-radio-group>
+              </div>
+      </v-row>
 
-      <div class="mx10">
-        <div class="col-md-8 col-8 text-center">
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
           <strong>Meter Base Rating:</strong>
         </div>
         <div class="col-md-4 col-4 text-left text-primary">
-          <div id="metReq" class="text-primary">{{ totalDemandWatts == 0 ? '' : meterBase }}&nbsp;</div>
+          <div id="metReq" class="text-primary">{{ totalDemandWatts==0 ? '' : meterBase }}&nbsp;</div>
         </div>
-      </div>
+      </v-row>
 
-      <div class="mx10">
-        <div class="col-md-8 col-8 text-center">
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
           <strong class="text-light">Main Fuse / Breaker:</strong>
         </div>
         <div class="col-md-4 col-4 text-left text-warning">
-          <div id="ocdReq" class="text-warning">{{ totalDemandWatts == 0 ? '' : ocProtection + ' A' }} &nbsp;</div>
+          <div id="ocdReq" class="text-warning">{{ totalDemandWatts==0 ? '' : ocProtection + ' A' }} &nbsp;</div>
         </div>
-      </div>
+      </v-row>
 
-      <v-card class="mx10">
-        <v-row class="col-md-6 col-6 text-left">
-          <v-tooltip top color="primary">
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon color="primary" dark v-bind="attrs" v-on="on">
-                mdi-home
-              </v-icon>
-            </template>
-            <span> {{ groundingSize.hint }} </span>
-          </v-tooltip>
-          <br>  
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
+              <v-tooltip top color="primary">
+      <template v-slot:activator="{ on, attrs }">
+        <v-icon
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          mdi-home
+        </v-icon>
+      </template>
+      <span> {{ groundingSize.hint }} </span>
+    </v-tooltip>
           <strong>Service Grounding Conductor:</strong>
-        </v-row>
-        <v-row class="col-md-4 col-4 text-left">
-          <div id="sgcReq" class="text-primary "> {{ totalDemandWatts == 0 ? '' : 'Cu: ' + groundingSize.size.copper }}
-          </div>
-          <div class="text-primary"> {{ totalDemandWatts == 0 ? '' : 'Al: ' + groundingSize.size.al }} </div>
-        </v-row>
-      </v-card>
+        </div>
+        <div class="col-md-4 col-4 text-left">
+          <div id="sgcReq" class="text-primary "> {{ totalDemandWatts==0 ? '' : 'Cu: ' + groundingSize.size.copper  }}</div>
+          <div class="text-primary">  {{ totalDemandWatts==0 ? '' : 'Al: ' + groundingSize.size.al }} </div>
+        </div>
+      </v-row>
 
-      <v-card class="mx10">
-        <div class="col-md-8 col-8 text-center">
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
           <strong class="text-light">Service Bonding Jumper:</strong>
         </div>
-        <div class="col-md-4 col-4 text-right">
-          <div id="sgcReq" class="text-primary "> {{ totalDemandWatts == 0 ? '' : 'Cu: AWG #' + bondingSize.copper }}
-          </div>
-          <div class="text-primary"> {{ totalDemandWatts == 0 ? '' : 'Al: AWG #' + bondingSize.al }} </div>
+        <div class="col-md-4 col-4 text-left">
+          <div id="sgcReq" class="text-primary "> {{ totalDemandWatts==0 ? '' : 'Cu: AWG #' + bondingSize.copper }}</div>
+          <div class="text-primary">  {{ totalDemandWatts==0 ? '' : 'Al: AWG #' + bondingSize.al }} </div>
         </div>
-      </v-card>
-      <!-- for future use
-      <div class="mx10">
-        <div class="col-md-8 col-8 text-center">
+      </v-row>
+<!-- for future use
+      <v-row class="mx10">
+        <div class="col-md-8 col-8 text-right">
           <strong>Service Conduit Size (threaded, rigid metal):</strong>
         </div>
         <div class="col-md-4 col-4 text-left">
           <div id="conReq" class="text-primary">&nbsp;</div>
         </div>
-      </div> -->
+      </v-row> -->
 
       <v-row class="mx10">
-        <v-row class="col-md-8 col-8 text-left text-light">
+        <div class="col-md-8 col-8 text-right text-light">
           <strong>Service Panel Size (minimum):</strong>
-        </v-row>
-        <v-row class="col-md-4 col-4 text-right">
+        </div>
+        <div class="col-md-4 col-4 text-left">
           <div id="panReq" class="text-warning"> {{ branchCircuits }} </div>
-        </v-row>
+        </div>
       </v-row>
     </div>
     <div v-else>
-      <div class="mx10">
+      <v-row class="mx10">
         <div class="col-md-2 col-1"></div>
         <div class="col-md-8 col-10">
-          <v-alert border="top" color="red lighten-2" dark>Load calculation beyond residential limit of 200A, please
-            consult your electrician.</v-alert>
+          <v-alert
+            border="top"
+            color="red lighten-2"
+            dark
+          >Load calculation beyond residential limit of 200A, please consult your electrician.</v-alert>
         </div>
         <div class="col-md-2 col-1"></div>
-      </div>
+      </v-row>
     </div>
     <v-spacer></v-spacer>
-    
-  </div>
+        <v-row>
+      <v-col cols="6" sm2 lg1 xl1 class="py-10"> <v-btn depressed color="primary" @click="clearData">Clear Data</v-btn></v-col>
+      <v-col cols="6" sm2 lg1 xl1 class="py-10"> <v-btn depressed to="/home">Back</v-btn></v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
 import { mapGetters, mapState } from "vuex";
 export default {
-  emits:{
-    'clearData':null
-  },
   data() {
     return {
       temp: '75c',
       // Grounding conductor size according to rule 10-114 of CEC2018 page 110
-      groundingSize: {
-        size: { copper: "AWG #6 ", al: "AWG #4 " },
+      groundingSize: { 
+        size: {copper: "AWG #6 ", al: "AWG #4 "}, 
         hint: "Rule: 10-114, permitedd to be 1) insulated or bare & 2) sized smaller but not smaller than the current-carrying conductor(s) of the system being grounded."
       },
-
+      
     }
   },
 
   computed: {
     ...mapGetters(["getLeastAmp", "getLeastAwg", "getFeederAwg"]),
-    ...mapState(["totalLoads", "tables", "rules"]),
+    ...mapState(["houseDemands", "tables","rules"]),
 
     // total amp demand in amps
     totalDemandWatts() {
       // console.log("this.houseDemands: ", this.houseDemands);
-      return this.totalLoads.toFixed(0);
+      return this.houseDemands;
     },
     totalDemandAmps() {
       var amp = parseFloat((this.totalDemandWatts / 240).toFixed(2));
@@ -177,11 +180,11 @@ export default {
         return " Upgrade to commercial grade recommended.";
       }
     },
-    // // From table 39 get feeder size in AWG
-    // getFeederSize: function () {
-    //   return this.tables[2].ov_rating_amp.find((a) => a >= this.totalDemandAmps);
-    // },
-
+    // From table 39 get feeder size in AWG
+    getFeederSize: function () {
+      return this.tables[2].ov_rating_amp.find((a) => a >= this.totalDemandAmps);
+    },
+   
 
     //Over current protection selection for copper wire 75C from table 13
     ocProtection: function () {
@@ -189,25 +192,23 @@ export default {
     },
 
     // Bonding jumper size as table 16 
-    bondingSize: function () {
+    bondingSize: function() {
       var index = this.tables[7].ampereRating.value.findIndex(v => v >= this.totalDemandAmps);
       // console.log('table16 amp rating index: ', index);
-      let size = {
-        copper: this.tables[7].bondingJunperSize.catagoey.target.wire[0].value[index],
-        al: this.tables[7].bondingJunperSize.catagoey.target.wire[1].value[index]
-      };
+      let size = {copper: this.tables[7].bondingJunperSize.catagoey.target.wire[0].value[index],
+                   al: this.tables[7].bondingJunperSize.catagoey.target.wire[1].value[index]};
       // console.log("Bonding jumper size: ", size);
       return size;
     },
 
     // get number of branch circuit positions inside the panel. Rule: 8-108 page 101 CEC2018
-    branchCircuits: function () {
+    branchCircuits: function() {
       if (this.totalDemandAmps == 0) return ''
       if (this.totalDemandAmps <= 60) {
         return 16;
       } else if (this.totalDemandAmps <= 100) {
         return 24;
-      } else if (this.totalDemandAmps <= 125) {
+      } else if (this.totalDemandAmps <= 125 ) {
         return 30;
       } else if (this.totalDemandAmps <= 200) {
         return 40;
@@ -217,12 +218,12 @@ export default {
   },
   methods: {
     clearData() {
-      this.$emit('clearInput');
-      //  console.log('clear input insturction is out');
+     this.$emit('clearInput');
+    //  console.log('clear input insturction is out');
     },
 
     // get the hot conductore size from table 2 or table 4 @ 60, 75 or 90 celsius degree. 
-    conductorSize(table, temp) {
+     conductorSize(table, temp) {
       var size;
       if (this.totalDemandAmps === 0) {
         size = undefined;
@@ -244,24 +245,6 @@ export default {
 </script>
 
 <style scopped>
-@media screen and (min-width: 500px) {
-  .result {
-    text-align: center;
-    background-color: lightgray;
-    border-radius: 5px;
-    border-color: green;
-    padding: 5px;
-    margin-top: 5px;
-  display:grid;
-  grid-template-columns: 70%, 30%;
-  }
-
-  div .result div {
-    text-align: center;
-  }
-
-}
-
 /* .flex-center {
   display: flex;
   flex-direction: column;
@@ -272,7 +255,7 @@ export default {
     padding: 0 0px;
 }  
 
-.div__subtitle, .div__text, .div__title {
+.v-card__subtitle, .v-card__text, .v-card__title {
     padding: 12px 2px 12px 12px;
 }
 

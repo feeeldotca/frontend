@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { useStore } from 'vuex'
-import { ref, defineEmits } from 'vue'
+import { ref} from 'vue'
 import AreaLoads from '@/components/Loads/AreaLoads.vue'
 import AcHeating from '../components/Loads/AcHeating.vue'
 import RangeLoads from '../components/Loads/RangeLoads.vue'
@@ -11,15 +11,10 @@ import TotalDemandAmps from '../components/Loads/TotalDemandAmps.vue'
 const store = useStore()
 const detail = ref(false)
 
-defineEmits(['clearData'])
-
-// function clearData() {
-//       this.$emit('clearInput')      
-// }
 
 </script>
 <template>
-    <div class="total" style="margin-top: 5px; text-align: center; border: solid lightseagreen 1px; border-radius: 5px; line-height: 1.5em;">       
+    <div class="total" style="margin-top: 5px;  border: solid lightseagreen 1px; border-radius: 5px; line-height: 1.5em;">       
      <label for="detail"> Details </label>
      <input type="checkbox" v-model="detail" id="detail" />
         <label for="detail" style="font-weight: bold;">
@@ -30,24 +25,14 @@ defineEmits(['clearData'])
      <WaterHeater :info='detail'  />
      <EvLoads :info='detail'  />
      <OtherLoads :info='detail' />
-    
-    </div>
-     <TotalDemandAmps/>
-
-     <div>
-   
-        <v-btn @click="$emit('clearData')">Clear Data</v-btn>
-
-
-        <v-btn depressed to="/home">Back</v-btn>
-
+     <!-- <TotalDemandAmps/> -->
     </div>
 </template>
 
 <style scoped>
 @media screen and (min-width: 500px) {
 .total {
-  text-align: center;
+ 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.2em;
   color: brown;
